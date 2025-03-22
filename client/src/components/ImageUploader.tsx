@@ -115,28 +115,37 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageChange, previewUrl
       />
       
       {previewUrl ? (
-        <Box sx={{ width: '100%', textAlign: 'center' }}>
-          <Box
-            component="img"
-            src={previewUrl}
-            alt="Preview"
-            sx={{
-              maxWidth: '100%',
-              maxHeight: '200px',
-              objectFit: 'contain',
-              mb: 2
-            }}
-          />
-          <Button
-            variant="outlined"
-            color="error"
-            startIcon={<DeleteIcon />}
-            onClick={handleRemoveImage}
-            sx={{ mt: 1 }}
-          >
-            Remove
-          </Button>
-        </Box>
+        <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center', // Centers both img and button horizontally
+          textAlign: 'center'
+        }}
+      >
+        <Box
+          component="img"
+          src={previewUrl}
+          alt="Preview"
+          sx={{
+            maxWidth: '100%',
+            maxHeight: '200px',
+            objectFit: 'contain',
+            mb: 2
+          }}
+        />
+        <Button
+          variant="text"
+          color="error"
+          startIcon={<DeleteIcon />}
+          onClick={handleRemoveImage}
+          sx={{ mt: 1 }}
+        >
+          Remove
+        </Button>
+      </Box>
+      
       ) : (
         <Box
           sx={{
