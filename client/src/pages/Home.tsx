@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Box, Typography, Button, Grid, Paper, CircularProgress, Snackbar, Alert } from '@mui/material';
 import ImageUploader from '../components/ImageUploader';
 import ResultDisplay from '../components/ResultDisplay';
+import {fetchData} from '../services/api'
 
 // Define types for our state
 interface OcrResults {
@@ -76,12 +77,13 @@ function Home() {
       formData.append('frontImage', frontImage);
       formData.append('backImage', backImage);
       
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/ocr`, {
-        method: 'POST',
-        body: formData,
-      });
-      
-      if (!response.ok) {
+      // const response = await fetch(`${import.meta.env.VITE_API_URL}/api/ocr`, {
+      //   method: 'POST',
+      //   body: formData,
+      // });
+      const response=await fetchData(formData)
+      console.log(response)
+      if (!response||response.status>=400) {
         throw new Error('Failed to process the images');
       }
       
